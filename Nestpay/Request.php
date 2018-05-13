@@ -2,6 +2,7 @@
 
 use ZN\Request\URL;
 use ZN\Request\Method;
+use ZN\Payment\Currency;
 use ZN\Payment\Exception;
 use ZN\Payment\GatewayRequestAbstract;
 
@@ -126,13 +127,13 @@ class Request extends GatewayRequestAbstract
     /**
      * Sets currency.
      * 
-     * @param string $currency
+     * @param string|int $currency
      * 
      * @return $this
      */
-    public function currency(String $currency)
+    public function currency($currency)
     {
-        $this->settings['currency'] = $currency;
+        $this->settings['currency'] = Currency::get($currency);
 
         return $this;
     }
