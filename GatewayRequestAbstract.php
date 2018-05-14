@@ -11,7 +11,25 @@ abstract class GatewayRequestAbstract
      * 
      * @var array
      */
-    protected $settigs = [];
+    protected $settings = [];
+
+    /**
+     * Magic call
+     * 
+     * @param string $method
+     * @param array  $parameters
+     * 
+     * @return $this
+     */
+    public function __call($method, $parameters)
+    {
+        if( isset($parameters[0]) )
+        {
+            $this->settings[$method] = $parameters[0];
+        }
+    
+        return $this;
+    }
 
     /**
      * Send request.
