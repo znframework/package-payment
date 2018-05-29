@@ -38,8 +38,9 @@ $nestpay->clientId('123456')
         ->amount('10.00')
         ->returnUrl('Pay/response')
         ->send('test');
-
-# Respose
+```
+```php
+# Response
 $nestpay = Gateway::response('Nestpay');
 
 if( $nestpay->isApproved() )
