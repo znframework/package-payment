@@ -41,9 +41,7 @@ abstract class GatewayRequestAbstract
         $this->default();
 
         $_POST = $_POST + $this->settings;
-
-        $curl = new CURL;
-
+        
         if( ! isset($this->banks[$bank]) )
         {
             throw new Exception\InvalidBankException(NULL, $bank);
