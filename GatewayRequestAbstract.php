@@ -3,6 +3,7 @@
 use ZN\Singleton;
 use ZN\Request\URL;
 use ZN\Services\CURL;
+use ZN\DateTime\Date;
 
 abstract class GatewayRequestAbstract
 {
@@ -77,5 +78,17 @@ abstract class GatewayRequestAbstract
                 throw new MissingInformationExpception(NULL, $value);  
             }
         }
+    }
+
+    /**
+     * Protected year month converter
+     */
+    protected function yearAndMonthConverter(&$year, &$month)
+    {
+        $date   = new Date;
+        $date   = $date->convert($year . '-' . $month . '-01', '{sy}/{mn0}');
+        $dateEx = explode('/', $date);
+        $year   = $dateEx[0] ?? $year;
+        $month  = $dateEx[1] ?? $month;
     }
 }
